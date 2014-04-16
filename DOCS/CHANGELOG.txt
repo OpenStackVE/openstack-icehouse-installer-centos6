@@ -1,4 +1,7 @@
-1.0.0 RC1 - 15-Abril-2014
+1.0.0 RC2 - 16-Abril-2014
+- Mejoras en la documentación general.
+
+1.0.0 RC1 - 16-Abril-2014
 - Se prueba con la versión RC1 en RDO.
 - Cambios generales para adaptar el instalador original
   para Havana en la nueva versión (Icehouse).

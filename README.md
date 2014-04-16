@@ -10,9 +10,9 @@ infraestructura de virtualización basada en OpenStack. Hasta el momento,
 existen dos "sabores" del instalador, uno para Debian 7 y otra para Centos 6.
 
 Ambas versiones producen un OpenStack utilizable en producción, pero recomen-
-damos dado que Havana aun está muy nuevo probar muy bien antes de colocarlo
-en ambientes de producción. Si tiene dudas, use Grizzly en producción y ha-
-vana en desarrollo y haga todas las pruebas que pueda antes de colocarlo en
+damos dado que Icehouse aun está muy nuevo probar muy bien antes de colocarlo
+en ambientes de producción. Si tiene dudas, use Havana en producción e Icehouse
+en desarrollo y haga todas las pruebas que pueda antes de colocarlo en
 ambientes de producción "real".
 
 En resumen, este instalador puede producir un OpenStack Icehouse completamente
@@ -64,13 +64,15 @@ de módulos para instalar lo que se conoce como un "all-in-one" (un servidor
 monolítico de *OpenStack* con todos los servicios).
 
 Adicionalmente, existen tres módulos que por defecto están en "no":
-*Ceilometer*, *Swift* y *SNMP*. El módulo de swift se puede instalar "si usted
+*Heat*, *Swift* y *SNMP*. El módulo de swift se puede instalar "si usted
 realmente va a usarlo". *Swift* por si solo ya es casi tan extenso como todo 
 *OpenStack*. Úselo si **REALMENTE** sabe lo que está haciendo y si **REALMENTE**
 lo va a utilizar. El módulo de *SNMP* instala variables de monitoreo útiles si
 usted va a monitorear *OpenStack* vía *SNMP* pero no instala ningún tipo de
 aplicación de monitoreo. Las variables están descritas (si usted instala el
 soporte) en el archivo `/etc/snmp/snmpd.conf`.
+
+NOTA: Se incluyen archivos para el agente ZABBIX en el directorio "Goodies".
 
 Si usted desea instalar un "all-in-one", sólo modifique las contraseñas,
 direcciones IP y dominios de correo y de *dhcp/dnsmasq* que aparecen en el
@@ -236,6 +238,23 @@ todos sus servicios de openstack !. Coloque todos los servicios en "disable" con
 "openstack-control.sh disable" y llame al script con la opción "start" desde
 el /etc/rc.local del sistema operativo !.
 
+### ARRANQUE CONTROLADO DE MAQUINAS VIRTUALES
+
+Script "openstack-vm-boot-start.sh": Este script sirve para levantar las VMs
+de manera controlada y con tiempos de espera entra cada inicio de VM con el fin
+de evitar "tormentas" de I/O. El script utiliza el siguiente archivo de
+configuración:
+
+```bash
+/etc/openstack-control-script-config/nova-start-vms.conf
+```
+
+Coloque en dicho archivo los nombres de las VMs que quiere arrancar de manera
+ordenada y secuencial para evitar tormentas de I/O. El script puede ser llamado
+desde el "/etc/rc.local" del sistema operativo.
+
+NOTA: Los nombres de las VMs se deben obtener del comando "nova list".
+
 
 ### DNSMASQ
 
@@ -277,6 +296,7 @@ serán instalados):
 * neutroninstall.sh
 * novainstall.sh
 * ceilometerinstall.sh
+* heatinstall.sh
 * snmpinstall.sh
 * horizoninstall.sh
 * postinstall.sh
@@ -317,6 +337,16 @@ servicios están instalados para iniciar/detener/reiniciar/etc.
 2. Agregue los repositorios EPEL y RDO (ver "NOTAS.txt").
 
 3. Instale y configure OpenVSWitch (de nuevo, ver "NOTAS.txt").
+
+ALERTA: Esta versión de OpenStack no soporta MySQL menor a 5.5. Vea las notas
+y tome sus precauciones !.
+
+La versión para CENTOS 6 de este instalador usa MariaDB 5.5 disponible en los
+repositorios RDO.
+
+Si usted va a usar un manejador de base de datos externo basado en MySQL/MariaDB,
+ASEGURESE que sea la versión correcta (5.5) para no terminar con una instalación
+de OpenStack inservible !.
 
 #### Debian 7:
 
@@ -462,6 +492,9 @@ Si usted desea NO ELIMINAR las bases de datos creadas, modifique el
 "main-config.rc" y coloque la opción dbinstall="no". Esto hará que el
 desinstalador no elimine ni el manejador de base de datos ni las bases de
 datos creadas.
+
+ALERTA: Si usted no tiene cuidado, podría terminar eliminando bases de datos
+de otras aplicaciones !. Queda advertido !.
 
 Esto es muy conveniente para una reinstalación. Si por alguna razón su
 instalación de OpenStack requiere ser reconstruida sin tocar las bases de
