@@ -194,6 +194,14 @@ openstack-config --set /etc/ceilometer/ceilometer.conf api port 8777
 openstack-config --set /etc/ceilometer/ceilometer.conf api host 0.0.0.0
 
 
+# Agregado Abril 17 2014
+openstack-config --set /etc/ceilometer/ceilometer.conf DEFAULT heat_control_exchange heat
+openstack-config --set /etc/ceilometer/ceilometer.conf DEFAULT control_exchange ceilometer
+openstack-config --set /etc/ceilometer/ceilometer.conf DEFAULT http_control_exchanges nova
+sed -r -i 's/http_control_exchanges\ =\ nova/http_control_exchanges=nova\nhttp_control_exchanges=glance\nhttp_control_exchanges=cinder\nhttp_control_exchanges=neutron\n/' /etc/ceilometer/ceilometer.conf
+openstack-config --set /etc/ceilometer/ceilometer.conf publisher_rpc metering_topic metering
+openstack-config --set /etc/ceilometer/ceilometer.conf rpc_notifier2 topics notifications
+
 echo ""
 echo "Aplicando reglas de IPTABLES"
 

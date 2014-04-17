@@ -80,6 +80,8 @@ yum -y install python-neutronclient python-websockify pysnmp python-croniter pyt
 yum -y install python-ceilometerclient python-cinderclient python-glanceclient \
 	python-heatclient python-openstackclient python-swiftclient python-neutronclient \
 	python-novaclient python-configobj python-lesscpy python-netifaces
+
+yum -y install compat-readline5 libguestfs-tools libguestfs
 	
 yum -y install tuned tuned-utils
 echo "virtual-host" > /etc/tune-profiles/active-profile
