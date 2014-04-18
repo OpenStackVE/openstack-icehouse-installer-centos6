@@ -136,8 +136,11 @@ rm -f /root/keystonerc_admin
 rm -f /root/ks_admin_token
 rm -f /usr/local/bin/openstack-control.sh
 rm -f /usr/local/bin/openstack-log-cleaner.sh
+rm -f /usr/local/bin/openstack-keystone-tokenflush.sh
+rm -f /usr/local/bin/openstack-vm-boot-start.sh
 rm -f /etc/httpd/conf.d/openstack-dashboard.conf*
 rm -f /etc/httpd/conf.d/rootredirect.conf*
+rm -f /etc/cron.d/keystone-flush.crontab
 
 
 if [ $snmpinstall == "yes" ]

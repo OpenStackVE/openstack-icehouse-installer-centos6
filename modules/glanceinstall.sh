@@ -118,7 +118,7 @@ case $brokerflavor in
 	openstack-config --set /etc/glance/glance-api.conf DEFAULT qpid_notification_exchange glance
 	openstack-config --set /etc/glance/glance-api.conf DEFAULT rpc_backend glance.openstack.common.rpc.impl_qpid
 	openstack-config --set /etc/glance/glance-api.conf DEFAULT qpid_notification_topic notifications
-	openstack-config --set /etc/glance/glance-api.conf DEFAULT qpid_host $messagebrokerhost
+	openstack-config --set /etc/glance/glance-api.conf DEFAULT qpid_hostname $messagebrokerhost
 	openstack-config --set /etc/glance/glance-api.conf DEFAULT qpid_port 5672
 	openstack-config --set /etc/glance/glance-api.conf DEFAULT qpid_username $brokeruser
 	openstack-config --set /etc/glance/glance-api.conf DEFAULT qpid_password $brokerpass

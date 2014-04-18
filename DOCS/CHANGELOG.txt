@@ -1,3 +1,8 @@
+1.0.0 RC4 - 18-Abril-2014
+- Correcciones menores en módulo de glance para qpid.
+- Correcciones menores en módulo uninstall.sh.
+- Correcciones menores en módulo postinstall.sh.
+
 1.0.0 RC3 - 17-Abril-2014
 - Mejoras en módulo de dependencias.
 - Mejoras en configuraciones para nova y ceilometer.
