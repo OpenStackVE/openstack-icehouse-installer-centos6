@@ -1,3 +1,10 @@
+1.0.1.el6 - 19-Abril-2014
+- Primera versión oficial para producción.
+- Basado en paquetes oficiales en repositorio RDO.
+- Corrección menor en módulo swiftinstall.sh.
+- Correción de "typo" para variable de limpieza
+  en swift "cleanupdeviceatuninstall".
+
 1.0.0 RC5 - 19-Abril-2014
 - Correcciones menores en módulos de instalación y
   configutación de heat, swift y glance.

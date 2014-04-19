@@ -6,7 +6,7 @@
 # Abril del 2014
 #
 # Archivo de configuracion principal
-# Para el instalador versión 1.0.0 RC5 "Snow Lynx"
+# Para el instalador versión 1.0.1.el6 "Snow Lynx"
 # Abril 19, 2014
 #
 
@@ -188,7 +188,7 @@ swiftdevice="d1"
 # USAR CON EXTREMA PRECAUCION !!
 cleanupdeviceatinstall="no"
 # Mismo caso pero aplica en el uninstall
-cleanundeviceatuninstall="yes"
+cleanupdeviceatuninstall="yes"
 #
 # Si el siguiente valor es "yes", se reconfigurará glance para usar
 # swift como backend de almacenamiento

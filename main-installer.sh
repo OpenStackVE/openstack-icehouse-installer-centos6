@@ -8,7 +8,7 @@
 # Primera versión para Icehouse (centos): Abril 15 del 2014
 #
 # Script principal
-# Versión 1.0.0. RC5 "Snow Lynx"
+# Versión 1.0.1.el6 "Snow Lynx"
 # 19 de abril del 2014
 #
 
@@ -41,7 +41,7 @@ case $1 in
 	echo "Para releases 6.5 en adelante"
 	echo "Realizado por Reynaldo R. Martinez P."
 	echo "E-Mail: TigerLinux@Gmail.com"
-	echo "Versión 1.0.0 RC5 \"Snow Lynx\" - Abril 19, 2014"
+	echo "Versión 1.0.1.el6 \"Snow Lynx\" - Abril 19, 2014"
 	echo ""
 	echo "Se verificaran los prerequisitos"
 	echo "Si alguno de los prerequisitos falla, se informará y se detendrá el proceso"

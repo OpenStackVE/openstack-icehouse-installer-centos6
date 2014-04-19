@@ -65,7 +65,7 @@ yum -y erase openstack-glance \
 	python-django-openstack-auth \
 	python-keystone*
 
-if [ $cleanundeviceatuninstall == "yes" ]
+if [ $cleanupdeviceatuninstall == "yes" ]
 then
 	rm -rf /srv/node/$swiftdevice/accounts
 	rm -rf /srv/node/$swiftdevice/containers
