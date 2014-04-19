@@ -91,11 +91,15 @@ openstack-config --set /etc/glance/glance-api.conf DEFAULT use_syslog False
 case $dbflavor in
 "mysql")
 	openstack-config --set /etc/glance/glance-api.conf DEFAULT sql_connection mysql://$glancedbuser:$glancedbpass@$dbbackendhost:$mysqldbport/$glancedbname
+	openstack-config --set /etc/glance/glance-api.conf database connection mysql://$glancedbuser:$glancedbpass@$dbbackendhost:$mysqldbport/$glancedbname
 	openstack-config --set /etc/glance/glance-registry.conf DEFAULT sql_connection mysql://$glancedbuser:$glancedbpass@$dbbackendhost:$mysqldbport/$glancedbname
+	openstack-config --set /etc/glance/glance-registry.conf database connection mysql://$glancedbuser:$glancedbpass@$dbbackendhost:$mysqldbport/$glancedbname
 	;;
 "postgres")
 	openstack-config --set /etc/glance/glance-api.conf DEFAULT sql_connection postgresql://$glancedbuser:$glancedbpass@$dbbackendhost:$psqldbport/$glancedbname
+	openstack-config --set /etc/glance/glance-api.conf database connection postgresql://$glancedbuser:$glancedbpass@$dbbackendhost:$psqldbport/$glancedbname
 	openstack-config --set /etc/glance/glance-registry.conf DEFAULT sql_connection postgresql://$glancedbuser:$glancedbpass@$dbbackendhost:$psqldbport/$glancedbname
+	openstack-config --set /etc/glance/glance-registry.conf database connection postgresql://$glancedbuser:$glancedbpass@$dbbackendhost:$psqldbport/$glancedbname
 	;;
 esac
 

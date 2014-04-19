@@ -1,5 +1,5 @@
 Version del instalador:
 
-1.0.0 RC4 "Snow Lynx"
+1.0.0 RC5 "Snow Lynx"
 
 SOLO PARA OPENSTACK ICEHOUSE !!!

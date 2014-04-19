@@ -1,3 +1,7 @@
+1.0.0 RC5 - 19-Abril-2014
+- Correcciones menores en módulos de instalación y
+  configutación de heat, swift y glance.
+
 1.0.0 RC4 - 18-Abril-2014
 - Correcciones menores en módulo de glance para qpid.
 - Correcciones menores en módulo uninstall.sh.

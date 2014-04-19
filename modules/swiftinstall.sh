@@ -210,6 +210,7 @@ chown -R swift:swift /var/lib/keystone-signing-swift
 if [ $ceilometerinstall == "yes" ]
 then
 	openstack-config --set /etc/swift/proxy-server.conf filter:ceilometer use "egg:ceilometer#swift"
+	openstack-config --set /etc/swift/proxy-server.conf pipeline:main "healthcheck cache authtoken keystoneauth ceilometer proxy-server"
 fi
 
 service memcached start
