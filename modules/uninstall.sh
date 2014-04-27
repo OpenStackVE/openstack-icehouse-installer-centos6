@@ -56,14 +56,18 @@ yum -y erase openstack-glance \
 	mongodb \
 	haproxy \
 	rabbitmq-server \
+	erlang-* \
 	openstack-dashboard \
 	openstack-packstack \
 	sysfsutils \
 	genisoimage \
 	libguestfs \
+	spice-html5 \
 	rabbitmq-server \
 	python-django-openstack-auth \
 	python-keystone*
+
+yum -y erase openstack-puppet-modules openstack-packstack-puppet
 
 if [ $cleanupdeviceatuninstall == "yes" ]
 then
@@ -124,10 +128,13 @@ rm -fr /etc/glance \
 	/etc/openstack-control-script-config \
 	/var/lib/keystone-signing-swift \
 	/var/lib/rabbitmq \
+	/var/log/rabbitmq \
+	/etc/rabbitmq \
 	$dnsmasq_config_file \
 	/etc/dnsmasq-neutron.d \
 	/var/tmp/packstack \
-	/var/lib/keystone-signing-swift
+	/var/lib/keystone-signing-swift \
+	/etc/init.d/neutron-openvswitch-agent.orig
 
 
 service crond restart

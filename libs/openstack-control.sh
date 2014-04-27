@@ -19,6 +19,11 @@ then
 	exit 0
 fi
 
+if [ -f /etc/openstack-control-script-config/nova-console-svc ]
+then
+	consolesvc=`/bin/cat /etc/openstack-control-script-config/nova-console-svc`
+fi
+
 keystone_svc_start='openstack-keystone'
 
 swift_svc_start='
@@ -89,24 +94,24 @@ if [ -f /etc/openstack-control-script-config/nova-full-installed ]
 then
 	if [ -f /etc/openstack-control-script-config/nova-without-compute ]
 	then
-		nova_svc_start='
+		nova_svc_start="
 			openstack-nova-api
 			openstack-nova-cert
 			openstack-nova-scheduler
 			openstack-nova-conductor
 			openstack-nova-consoleauth
-			openstack-nova-novncproxy
-		'
+			$consolesvc
+		"
 	else
-		nova_svc_start='
+		nova_svc_start="
 			openstack-nova-api
 			openstack-nova-cert
 			openstack-nova-scheduler
 			openstack-nova-conductor
 			openstack-nova-consoleauth
-			openstack-nova-novncproxy
+			$consolesvc
 			openstack-nova-compute
-		'
+		"
 	fi
 else
 	nova_svc_start='

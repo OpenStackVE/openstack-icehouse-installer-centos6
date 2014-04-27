@@ -1,3 +1,14 @@
+1.0.3.el6 - 27-Abril-2014
+- Se cambia el plugin de neutron a ML2.
+- Se cambian las imágenes de Cirros a V 0.3.2.
+- Correcciones menores en módulo "uninstall.sh".
+- Se coloca la opción (controlable en la config
+  del instalador) de usar VNC o SPICE como consola
+  para las VM's.
+- Se coloca la opción (controlable en la config
+  del instalador) de cambiar el lease-time para
+  el agente DHCP de Neutron.
+
 1.0.2.el6 - 23-Abril-2014
 - Cambios menores en la documentación general.
 

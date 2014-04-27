@@ -62,6 +62,8 @@ fi
 echo ""
 echo "Instalando paquetes para Nova"
 
+yum -y install spice-html5
+
 if [ $nova_in_compute_node = "no" ]
 then
 	yum install -y openstack-nova-novncproxy \
@@ -87,6 +89,18 @@ cat ./libs/openstack-config > /usr/bin/openstack-config
 
 echo "Listo"
 echo ""
+
+# Servicio de consola: openstack-nova-spicehtml5proxy u openstack-nova-novncproxy
+
+case $consoleflavor in
+"spice")
+	consolesvc="openstack-nova-spicehtml5proxy"
+;;
+"vnc")
+	consolesvc="openstack-nova-novncproxy"
+;;
+esac
+
 
 # Verificamos si este servidor va a poder soportar KVM - Si no, mas adelante
 # configuraremos NOVA para usar qemu en lugar de kvm
@@ -254,6 +268,43 @@ openstack-config --set /etc/nova/nova.conf DEFAULT linuxnet_ovs_integration_brid
 openstack-config --set /etc/nova/nova.conf DEFAULT neutron_ovs_bridge $integration_bridge
 # openstack-config --set /etc/nova/nova.conf DEFAULT dhcp_options_enabled True
 
+case $consoleflavor in
+"vnc")
+	openstack-config --set /etc/nova/nova.conf DEFAULT vnc_enabled True
+	openstack-config --set /etc/nova/nova.conf DEFAULT novncproxy_host 0.0.0.0
+	openstack-config --set /etc/nova/nova.conf DEFAULT vncserver_proxyclient_address $novahost
+	openstack-config --set /etc/nova/nova.conf DEFAULT novncproxy_base_url "http://$vncserver_controller_address:6080/vnc_auto.html"
+	openstack-config --set /etc/nova/nova.conf DEFAULT novncproxy_port 6080
+	openstack-config --set /etc/nova/nova.conf DEFAULT vncserver_listen $novahost
+	openstack-config --set /etc/nova/nova.conf DEFAULT vnc_keymap $vnc_keymap
+	openstack-config --del /etc/nova/nova.conf spice html5proxy_base_url
+	openstack-config --del /etc/nova/nova.conf spice server_listen
+	openstack-config --del /etc/nova/nova.conf spice server_proxyclient_address
+	openstack-config --del /etc/nova/nova.conf spice keymap
+	openstack-config --set /etc/nova/nova.conf spice agent_enabled False
+	openstack-config --set /etc/nova/nova.conf spice enabled False
+	;;
+"spice")
+	openstack-config --del /etc/nova/nova.conf DEFAULT novncproxy_host
+	openstack-config --del /etc/nova/nova.conf DEFAULT vncserver_proxyclient_address
+	openstack-config --del /etc/nova/nova.conf DEFAULT novncproxy_base_url
+	openstack-config --del /etc/nova/nova.conf DEFAULT novncproxy_port
+	openstack-config --del /etc/nova/nova.conf DEFAULT vncserver_listen
+	openstack-config --del /etc/nova/nova.conf DEFAULT vnc_keymap
+ 
+	openstack-config --set /etc/nova/nova.conf DEFAULT vnc_enabled False
+	openstack-config --set /etc/nova/nova.conf DEFAULT novnc_enabled False
+ 
+	openstack-config --set /etc/nova/nova.conf spice html5proxy_base_url "http://$spiceserver_controller_address:6082/spice_auto.html"
+	openstack-config --set /etc/nova/nova.conf spice server_listen 0.0.0.0
+	openstack-config --set /etc/nova/nova.conf spice server_proxyclient_address $novahost
+	openstack-config --set /etc/nova/nova.conf spice enabled True
+	openstack-config --set /etc/nova/nova.conf spice agent_enabled True
+	openstack-config --set /etc/nova/nova.conf spice keymap en-us
+;;
+esac
+
+
 case $brokerflavor in
 "qpid")
 	openstack-config --set /etc/nova/nova.conf DEFAULT rpc_backend nova.openstack.common.rpc.impl_qpid
@@ -338,8 +389,8 @@ then
 	service openstack-nova-consoleauth start
 	chkconfig openstack-nova-consoleauth on
 
-	service openstack-nova-novncproxy start
-	chkconfig openstack-nova-novncproxy on
+	service $consolesvc start
+	chkconfig $consolesvc on
 
 	if [ $nova_without_compute = "no" ]
 	then
@@ -413,6 +464,7 @@ then
 else
 	date > /etc/openstack-control-script-config/nova-installed
 	date > /etc/openstack-control-script-config/nova
+	echo "$consolesvc" > /etc/openstack-control-script-config/nova-console-svc
 	if [ $nova_in_compute_node = "no" ]
 	then
 		date > /etc/openstack-control-script-config/nova-full-installed
@@ -429,11 +481,5 @@ fi
 echo ""
 echo "Nova Instalado y Configurado"
 echo ""
-
-
-
-
-
-
 
 

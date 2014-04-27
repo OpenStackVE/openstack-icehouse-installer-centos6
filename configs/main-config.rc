@@ -6,8 +6,8 @@
 # Abril del 2014
 #
 # Archivo de configuracion principal
-# Para el instalador versión 1.0.2.el6 "Snow Lynx"
-# Abril 23, 2014
+# Para el instalador versión 1.0.3.el6 "Snow Lynx"
+# Abril 27, 2014
 #
 
 #
@@ -264,6 +264,8 @@ dhcp_domain="localdomain"
 metadata_shared_secret="P@ssw0rd"
 # MAC base para las VM's
 basemacspec="fa:16:3e:00:00:00"
+# Duración en segundos para los leases
+dhcp_lease_duration="7200"
 # Solo para la base de datos:
 # Si se van a tener varios hosts de neutron, colocar aquí las IP's
 # para el acceso de la base de datos - sólo efectivo cuando el backend
@@ -335,6 +337,19 @@ extranovahosts=""
 # Datos para sobre-suscripción de CPU y RAM en los nodos de compute
 ram_allocation_ratio="1.5"
 cpu_allocation_ratio="16.0"
+# A partir del instalador para Ubuntu, damos la opción de instalar VNC o Spice
+# La siguiente variable controla que sabor de consola se va a usar.
+# En el instalados para Centos se usa el mismo principio.
+# Coloque "spice" para SpiceHTML5, o "vnc" para NoVNC
+# Por defecto: vnc
+consoleflavor="vnc"
+# Servidor SPICE
+# Esta es la IP que debe pertenecer al controller o nodo NOVA de control
+# En una configuración all-in-one, esa la misma del novahost, pero en una
+# configuración con múltiples nodos de compute, debe ser la IP del controller
+# o donde se ejecuta el nodo principal de NOVA
+spiceserver_controller_address="192.168.50.10"
+# Servidor VNC
 # Esta es la IP que debe pertenecer al controller o nodo NOVA de control
 # En una configuración all-in-one, esa la misma del novahost, pero en una
 # configuración con múltiples nodos de compute, debe ser la IP del controller
