@@ -3,4 +3,4 @@ Pendientes:
 * Considerar a futuro incluir un portal de automonitoreo vía MRTG con
   autenticación http (htpasswd).
 * Incluir la opción de colocar todos los servicios sobre SSL.
-* Colocar Trove (cuando esté disponible en los repos RDO).
+* Hacer mas pruebas con el módulo de TROVE.

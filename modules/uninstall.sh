@@ -52,6 +52,7 @@ yum -y erase openstack-glance \
 	openstack-swift-* \
 	openstack-ceilometer-* \
 	openstack-heat-* \
+	openstack-trove-* \
 	mongodb-server \
 	mongodb \
 	haproxy \
@@ -91,6 +92,7 @@ userdel -f -r ceilometer
 userdel -f -r swift
 userdel -f -r rabbitmq
 userdel -f -r heat
+userdel -f -r trove
 
 echo "Eliminando Archivos remanentes"
 
@@ -111,6 +113,9 @@ rm -fr /etc/glance \
 	/etc/sudoers.d/neutron \
 	/etc/nova \
 	/etc/heat \
+	/etc/trove \
+	/var/log/trove \
+	/var/cache/trove \
 	/var/log/nova \
 	/var/lib/nova \
 	/etc/sudoers.d/nova \

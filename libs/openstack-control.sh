@@ -50,6 +50,12 @@ heat_svc_start='
 	openstack-heat-engine
 '
 
+trove_svc_start='
+	openstack-trove-api
+	openstack-trove-taskmanager
+	openstack-trove-conductor
+'
+
 if [ -f /etc/openstack-control-script-config/neutron-full-installed ]
 then
 	if [ -f /etc/openstack-control-script-config/neutron-full-installed-metering ]
@@ -150,6 +156,7 @@ neutron_svc_stop=`echo $neutron_svc_start|tac -s' '`
 nova_svc_stop=`echo $nova_svc_start|tac -s' '`
 ceilometer_svc_stop=`echo $ceilometer_svc_start|tac -s' '`
 heat_svc_stop=`echo $heat_svc_start|tac -s' '`
+trove_svc_stop=`echo $trove_svc_start|tac -s' '`
 
 
 case $1 in
@@ -238,6 +245,14 @@ start)
                 done
         fi
 
+	if [ -f /etc/openstack-control-script-config/trove ]
+	then
+		for i in $trove_svc_start
+		do
+			service $i start
+			#sleep 1
+		done
+	fi
 
 	echo ""
 
@@ -248,6 +263,16 @@ stop)
 	echo ""
 	echo "Deteniendo Servicios de OpenStack"
 	echo ""
+
+	if [ -f /etc/openstack-control-script-config/trove ]
+	then
+		for i in $trove_svc_stop
+		do
+			service $i stop
+			#sleep 1
+		done
+	fi
+
 
         if [ -f /etc/openstack-control-script-config/heat ]
         then
@@ -323,6 +348,10 @@ stop)
 
 	rm -rf /tmp/keystone-signing-*
 	rm -rf /tmp/cd_gen_*
+	if [ -d /var/cache/trove ]
+	then
+		rm -f /var/cache/trove/*
+	fi
 
 	echo ""
 
@@ -399,6 +428,13 @@ status)
                 done
         fi
 
+	if [ -f /etc/openstack-control-script-config/trove ]
+	then
+		for i in $trove_svc_start
+		do
+			service $i status
+		done
+	fi
 
 	echo ""
 	;;
@@ -473,7 +509,13 @@ enable)
                 done
         fi
 
-
+	if [ -f /etc/openstack-control-script-config/trove ]
+	then
+		for i in $trove_svc_start
+		do
+			chkconfig $i on
+		done
+	fi
 
 
 	echo ""
@@ -549,6 +591,13 @@ disable)
                 done
         fi
 
+	if [ -f /etc/openstack-control-script-config/trove ]
+	then
+		for i in $trove_svc_start
+		do
+			chkconfig $i off
+		done
+	fi
 
         echo ""
 	;;
@@ -558,6 +607,15 @@ restart)
 	echo ""
 	echo "Reiniciando Servicios de OpenStack"
 	echo ""
+
+	if [ -f /etc/openstack-control-script-config/trove ]
+	then
+		for i in $trove_svc_stop
+		do
+			service $i stop
+			#sleep 1
+		done
+	fi
 
         if [ -f /etc/openstack-control-script-config/heat ]
         then
@@ -633,6 +691,10 @@ restart)
 
 	rm -rf /tmp/keystone-signing-*
 	rm -rf /tmp/cd_gen_*
+        if [ -d /var/cache/trove ]
+        then
+                rm -f /var/cache/trove/*
+        fi
 
 	if [ -f /etc/openstack-control-script-config/keystone ]
 	then
@@ -712,6 +774,14 @@ restart)
                 done
         fi
 
+	if [ -f /etc/openstack-control-script-config/trove ]
+	then
+		for i in $trove_svc_start
+		do
+			service $i start
+			#sleep 1
+		done
+	fi
 
 	echo ""
 
