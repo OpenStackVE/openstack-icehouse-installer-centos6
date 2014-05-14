@@ -1,3 +1,8 @@
+1.1.1.el6 - 14-Mayo-2014
+- Se agrega un fix al módulo de neutron para evitar
+  doble definición de servicios al final del archivo
+  /etc/neutron/neutron.conf
+
 1.1.0.el6 - 07-Mayo-2014
 - Se agrega Trove como opción para instalación en
   calidad de "Experimental".

@@ -513,6 +513,16 @@ case $brokerflavor in
 	;;
 esac
 
+#
+# Medida paranoica a partir del 14-05-2014
+#
+openstack-config --del /etc/neutron/neutron.conf service_providers service_provider
+openstack-config --del /etc/neutron/neutron.conf service_providers service_provider
+openstack-config --del /etc/neutron/neutron.conf service_providers service_provider
+openstack-config --del /etc/neutron/neutron.conf service_providers service_provider
+openstack-config --del /etc/neutron/neutron.conf service_providers service_provider
+openstack-config --del /etc/neutron/neutron.conf service_providers service_provider
+
 sync
 sleep 2
 sync
