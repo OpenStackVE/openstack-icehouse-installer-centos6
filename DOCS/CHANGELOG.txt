@@ -1,3 +1,8 @@
+1.1.2.el6 - 11-Agosto-2014
+- Se agrega el paquete actualizado python-migrate con
+  los fixes de compatibilidad para sqlalchemy 0.8.x
+- Se actualiza la documentación general.
+
 1.1.1.el6 - 14-Mayo-2014
 - Se agrega un fix al módulo de neutron para evitar
   doble definición de servicios al final del archivo

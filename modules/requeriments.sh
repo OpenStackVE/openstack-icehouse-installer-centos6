@@ -82,6 +82,11 @@ yum -y install python-ceilometerclient python-cinderclient python-glanceclient \
 	python-novaclient python-configobj python-lesscpy python-netifaces
 
 yum -y install compat-readline5 libguestfs-tools libguestfs
+
+# A partir del 11-Ago-2014
+# Por OOPPSSS de los paquetes de RDO
+#
+rpm -Uvh ./libs/python-migrate/*.rpm
 	
 yum -y install tuned tuned-utils
 echo "virtual-host" > /etc/tune-profiles/active-profile

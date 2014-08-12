@@ -8,8 +8,8 @@
 # Primera versión para Icehouse (centos): Abril 15 del 2014
 #
 # Script principal
-# Versión 1.1.1.el6 "Snow Lynx"
-# 14 de Mayo del 2014
+# Versión 1.1.2.el6 "Snow Lynx"
+# 11 de Agosto  del 2014
 #
 
 PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
@@ -38,16 +38,17 @@ case $1 in
 
 	echo ""
 	echo "INSTALADOR DE OPENSTACK ICEHOUSE PARA CENTOS/RHEL/SCIENTIFIC-LINUX 6"
-	echo "Para releases 6.5 en adelante"
+	echo "Para releases 6.5 en adelante (Series 6.x solamente. Para Serie 7 use el"
+	echo "instalador correspondiente"
 	echo "Realizado por Reynaldo R. Martinez P."
 	echo "E-Mail: TigerLinux@Gmail.com"
-	echo "Versión 1.1.1.el6 \"Snow Lynx\" - Mayo 14, 2014"
+	echo "Versión 1.1.2.el6 \"Snow Lynx\" - Agosto 11, 2014"
 	echo ""
 	echo "Se verificaran los prerequisitos"
 	echo "Si alguno de los prerequisitos falla, se informará y se detendrá el proceso"
 	echo ""
 	echo "Prerequisitos:"
-	echo "- OS: RHEL 6.5 en adelante (o compatible): SL 6.5, Centos 6.5, etc. de 64 bits"
+	echo "- OS: RHEL Series 6.x, 6.5 en adelante (o compatible): SL 6.5, Centos 6.5, etc. de 64 bits"
 	echo "- El usuario que ejecuta este script debe ser root"
 	echo "- El servidor debe tener los repositorios EPEL y RDO instalados:"
 	echo "  * epel: http://fedoraproject.org/wiki/EPEL"
