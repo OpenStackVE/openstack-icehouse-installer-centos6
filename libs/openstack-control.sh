@@ -133,16 +133,36 @@ else
 	alarm1=""
 	alarm2=""
 fi
+ 
+if [ -f /etc/openstack-control-script-config/ceilometer-full-installed ]
+then
+	if [ -f /etc/openstack-control-script-config/ceilometer-without-compute ]
+	then
+		ceilometer_svc_start="
+		openstack-ceilometer-central
+		openstack-ceilometer-api
+		openstack-ceilometer-collector
+		openstack-ceilometer-notification
+		$alarm1
+		$alarm2
+		"
+	else
+		ceilometer_svc_start="
+		openstack-ceilometer-compute
+		openstack-ceilometer-central
+		openstack-ceilometer-api
+		openstack-ceilometer-collector
+		openstack-ceilometer-notification
+		$alarm1
+		$alarm2
+		"
+	fi
+else
+	ceilometer_svc_start="
+		openstack-ceilometer-compute
+	"
+fi
 
-ceilometer_svc_start="
-	openstack-ceilometer-compute
-	openstack-ceilometer-central
-	openstack-ceilometer-api
-	openstack-ceilometer-collector
-	openstack-ceilometer-notification
-	$alarm1
-	$alarm2
-"
 
 
 

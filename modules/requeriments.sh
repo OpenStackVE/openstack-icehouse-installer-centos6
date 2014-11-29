@@ -83,6 +83,8 @@ yum -y install python-ceilometerclient python-cinderclient python-glanceclient \
 
 yum -y install compat-readline5 libguestfs-tools libguestfs
 
+yum -y install scsi-target-utils
+
 # A partir del 11-Ago-2014
 # Por OOPPSSS de los paquetes de RDO
 #

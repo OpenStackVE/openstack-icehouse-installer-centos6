@@ -1,3 +1,15 @@
+1.1.5.el6 - 22-Noviembre-2104
+- Mejoras en módulo de instalación de ceilometer para
+  casos de múltiples nodos de compute o controladores
+  puros.
+- Selección de "token flavor" (uuid o pki) para Keystone
+  controlable por la configuración del instalador.
+- Mejoras en la documentación para reflejar los cambios
+  en el módulo de instalación de ceilometer.
+- Corrección menor en módulo de instalación de Neutron.
+- Inclusión de "scsi-target-utils" en módulos de reque-
+  rimientos y de cinder.
+
 1.1.4.el6 - 22-Octubre-2014
 - Corrección adicional para Ceilometer
 

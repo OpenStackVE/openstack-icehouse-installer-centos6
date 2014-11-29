@@ -1,14 +1,17 @@
 #!/bin/bash
 #
-# Instalador desatendido para Openstack Icehouse sobre CENTOS
+# Instalador desatendido para Openstack Icehouse sobre CENTOS 6
 # Reynaldo R. Martinez P.
 # E-Mail: TigerLinux@Gmail.com
-# Primera versión para Grizzly (centos): Julio 18 del 2013
-# Primera versión para Havana (centos): Octubre 17 del 2013
+# Primera versión (Grizzly): Julio 18 del 2013
+# Primera versión (Havana - Centos6): Octubre 17 del 2013
+# Primera versión (Havana - Debian7): Octubre 30 del 2013
 # Primera versión para Icehouse (centos): Abril 15 del 2014
+# Primera versión para Icehouse (debian): Abril 19 del 2014
+# Primera versión para Icehouse (ubuntu): Abril 23 del 2014
 #
 # Script principal
-# Versión 1.1.4.el6 "Snow Lynx"
+# Versión 1.1.5.el6 "Snow Lynx"
 # 22 de Octubre del 2014
 #
 
@@ -38,11 +41,11 @@ case $1 in
 
 	echo ""
 	echo "INSTALADOR DE OPENSTACK ICEHOUSE PARA CENTOS/RHEL/SCIENTIFIC-LINUX 6"
-	echo "Para releases 6.5 en adelante (Series 6.x solamente. Para Serie 7 use el"
+	echo "Para releases 6.6 en adelante (Series 6.x solamente. Para Serie 7 use el"
 	echo "instalador correspondiente"
 	echo "Realizado por Reynaldo R. Martinez P."
 	echo "E-Mail: TigerLinux@Gmail.com"
-	echo "Versión 1.1.4.el6 \"Snow Lynx\" - Octubre 22, 2014"
+	echo "Versión 1.1.5.el6 \"Snow Lynx\" - Noviembre 29, 2014"
 	echo ""
 	echo "Se verificaran los prerequisitos"
 	echo "Si alguno de los prerequisitos falla, se informará y se detendrá el proceso"
