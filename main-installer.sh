@@ -11,8 +11,8 @@
 # Primera versión para Icehouse (ubuntu): Abril 23 del 2014
 #
 # Script principal
-# Versión 1.1.5.el6 "Snow Lynx"
-# 22 de Octubre del 2014
+# Versión 1.1.6.el6 "Snow Lynx"
+# 19 de Enero del 2015
 #
 
 PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
@@ -45,13 +45,13 @@ case $1 in
 	echo "instalador correspondiente"
 	echo "Realizado por Reynaldo R. Martinez P."
 	echo "E-Mail: TigerLinux@Gmail.com"
-	echo "Versión 1.1.5.el6 \"Snow Lynx\" - Noviembre 29, 2014"
+	echo "Versión 1.1.6.el6 \"Snow Lynx\" - Enero 19, 2015"
 	echo ""
 	echo "Se verificaran los prerequisitos"
 	echo "Si alguno de los prerequisitos falla, se informará y se detendrá el proceso"
 	echo ""
 	echo "Prerequisitos:"
-	echo "- OS: RHEL Series 6.x, 6.5 en adelante (o compatible): SL 6.5, Centos 6.5, etc. de 64 bits"
+	echo "- OS: RHEL Series 6.x, 6.6 en adelante (o compatible): SL 6.6, Centos 6.6, etc. de 64 bits"
 	echo "- El usuario que ejecuta este script debe ser root"
 	echo "- El servidor debe tener los repositorios EPEL y RDO instalados:"
 	echo "  * epel: http://fedoraproject.org/wiki/EPEL"
